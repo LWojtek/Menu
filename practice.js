@@ -112,7 +112,7 @@ function generateBtns() {
     buttons.forEach((btn) => {
         btn.addEventListener('click', function (e) {
     
-            var filterName = this.dataset.id; // all
+            var filterName = this.dataset.id;
     
             var filterMenu = menu;
     
