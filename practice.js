@@ -45,7 +45,6 @@ const menu = [{
         price: 18.99,
         img: "./images/item-6.jpeg",
         desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
-        lol: 'WOW'
     },
     {
         id: 7,
@@ -72,13 +71,106 @@ const menu = [{
         img: "./images/item-9.jpeg",
         desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
     },
-    // {
-    //     id: 10,
-    //     title: "steak dinner",
-    //     category: "dinner",
-    //     price: 39.99,
-    //     img: "./images/item-10.jpeg",
-    //     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
-    // },
-
+    {
+        id: 10,
+        title: "steak dinner",
+        category: "dinner",
+        price: 39.99,
+        img: "./images/item-10.jpeg",
+        desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+    },
 ];
+
+var menuContainer = document.querySelector('.section-center');
+var btnContainer = document.querySelector('.btn-container');
+var buttons;
+
+/*=============================================
+=                   Buttons                  =
+=============================================*/
+function generateBtns() {
+    var filterBtns = {'all': ''};
+    
+    // Get unique categories
+    for (let i = 0; i < menu.length; i++) {
+        let menuItem = menu[i];
+        let menuCat = menuItem.category;
+        
+        filterBtns[menuCat] = '';
+    }
+    
+    // Get list of keys in array
+    var filterArr = Object.keys(filterBtns);
+    var buttons = '';
+    for (let i = 0; i < filterArr.length; i++) {
+        const buttonName = filterArr [i];
+        buttons += `<button class="filter-btn" type="button" data-id=${buttonName}>${buttonName}</button>`   
+    }
+    
+    btnContainer.innerHTML = buttons;
+    buttons = document.querySelectorAll('.btn-container button');
+    buttons.forEach((btn) => {
+        btn.addEventListener('click', function (e) {
+    
+            var filterName = this.dataset.id; // all
+    
+            var filterMenu = menu;
+    
+            if (filterName !== 'all') {
+                filterMenu = menu.filter((item)=> {
+                    if (item.category === filterName) {
+                        return true;
+                    }
+        
+                    return false;
+                });
+            }
+    
+            generateMenuItems(filterMenu);
+        });
+    });
+    
+}
+
+/*=============================================
+=                   Menu                   =
+=============================================*/
+function  generateMenuItems(menu) {
+
+    var menuItems = '';
+    
+    for (let i = 0; i < menu.length; i++) {
+        const item = menu[i];
+        menuItems += `<article class="menu-item">
+        <img src="${item.img}" alt="${item.title}" class="photo">
+        <div class="item-info">
+            <header>
+                <h4>${item.title}</h4>
+                <h4 class="price">$${item.price}</h4>
+            </header>
+            <p class="item-text">
+                ${item.desc}
+            </p>
+        </div>
+        </article>`;
+    }
+    
+    menuContainer.innerHTML = menuItems;
+}
+
+
+/* Extra --- add item function
+-------------------------------------------------- */
+function addItem(item) {
+    menu.push(item);
+    generateBtns();
+    generateMenuItems(menu);
+}
+
+/*=============================================
+=                   Init                   =
+=============================================*/
+generateBtns();
+generateMenuItems(menu);
+
+/*============  End of Init  =============*/
