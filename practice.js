@@ -45,6 +45,7 @@ const menu = [{
         price: 18.99,
         img: "./images/item-6.jpeg",
         desc: `Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday`,
+        lol: 'WOW'
     },
     {
         id: 7,
