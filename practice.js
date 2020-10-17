@@ -57,6 +57,7 @@ const menu = [{
     {
         id: 8,
         title: "american classic",
+
         category: "lunch",
         price: 12.99,
         img: "./images/item-8.jpeg",
