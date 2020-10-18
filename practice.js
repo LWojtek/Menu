@@ -89,56 +89,58 @@ var buttons;
 =                   Buttons                  =
 =============================================*/
 function generateBtns() {
-    var filterBtns = {'all': ''};
-    
+    var filterBtns = {
+        'all': ''
+    };
+
     // Get unique categories
     for (let i = 0; i < menu.length; i++) {
         let menuItem = menu[i];
         let menuCat = menuItem.category;
-        
+
         filterBtns[menuCat] = '';
     }
-    
+
     // Get list of keys in array
     var filterArr = Object.keys(filterBtns);
     var buttons = '';
     for (let i = 0; i < filterArr.length; i++) {
-        const buttonName = filterArr [i];
-        buttons += `<button class="filter-btn" type="button" data-id=${buttonName}>${buttonName}</button>`   
+        const buttonName = filterArr[i];
+        buttons += `<button class="filter-btn" type="button" data-id=${buttonName}>${buttonName}</button>`
     }
-    
+
     btnContainer.innerHTML = buttons;
     buttons = document.querySelectorAll('.btn-container button');
     buttons.forEach((btn) => {
         btn.addEventListener('click', function (e) {
-    
+
             var filterName = this.dataset.id;
-    
+
             var filterMenu = menu;
-    
+
             if (filterName !== 'all') {
-                filterMenu = menu.filter((item)=> {
+                filterMenu = menu.filter((item) => {
                     if (item.category === filterName) {
                         return true;
                     }
-        
+
                     return false;
                 });
             }
-    
+
             generateMenuItems(filterMenu);
         });
     });
-    
+
 }
 
 /*=============================================
 =                   Menu                   =
 =============================================*/
-function  generateMenuItems(menu) {
+function generateMenuItems(menu) {
 
     var menuItems = '';
-    
+
     for (let i = 0; i < menu.length; i++) {
         const item = menu[i];
         menuItems += `<article class="menu-item">
@@ -154,7 +156,7 @@ function  generateMenuItems(menu) {
         </div>
         </article>`;
     }
-    
+
     menuContainer.innerHTML = menuItems;
 }
 
@@ -170,6 +172,7 @@ function addItem(item) {
 /*=============================================
 =                   Init                   =
 =============================================*/
+
 generateBtns();
 generateMenuItems(menu);
 

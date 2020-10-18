@@ -169,6 +169,7 @@ p {
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: var(--radius);
+
 }
 
 .btn:hover {
@@ -228,6 +229,7 @@ Menu
   color: var(--clr-gold);
   cursor: pointer;
   transition: var(--transition);
+  outline: none;
 }
 
 .filter-btn:hover {
